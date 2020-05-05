@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="8cp-bE-Rp6">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Choose download Type-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="MultithreadingTestApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="q00-yw-H6b">
+                                <rect key="frame" x="10" y="188" width="394" height="31"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="AUO-sQ-WSc"/>
+                                    <constraint firstAttribute="width" secondItem="q00-yw-H6b" secondAttribute="height" multiplier="197:15" id="eIW-bc-tfc"/>
+                                </constraints>
+                                <segments>
+                                    <segment title="Async"/>
+                                    <segment title="One by one"/>
+                                </segments>
+                                <color key="tintColor" systemColor="systemPurpleColor" red="0.68627450980000004" green="0.32156862749999998" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="selectedSegmentTintColor" systemColor="systemPurpleColor" red="0.68627450980000004" green="0.32156862749999998" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <action selector="downloadTypeSegmentedControl:" destination="BYZ-38-t0r" eventType="valueChanged" id="iTw-xZ-nBn"/>
+                                </connections>
+                            </segmentedControl>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Image Loader" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zFj-dw-n6Z">
+                                <rect key="frame" x="105" y="118" width="204" height="45.5"/>
+                                <fontDescription key="fontDescription" name="MarkerFelt-Wide" family="Marker Felt" pointSize="35"/>
+                                <color key="textColor" systemColor="systemIndigoColor" red="0.34509803919999998" green="0.33725490200000002" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.79607843140000001" green="0.7843137255" blue="0.7843137255" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="q00-yw-H6b" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="05j-wm-IEY"/>
+                            <constraint firstItem="q00-yw-H6b" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="100" id="GcY-sZ-RlF"/>
+                            <constraint firstItem="zFj-dw-n6Z" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="RgU-1x-CBO"/>
+                            <constraint firstItem="zFj-dw-n6Z" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="30" id="ePK-XN-8ib"/>
+                            <constraint firstItem="q00-yw-H6b" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="sXS-dU-okF"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Choose download Type" id="0bl-gx-ohs"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1047.8260869565217" y="137.94642857142856"/>
+        </scene>
+        <!--Second View Controller-->
+        <scene sceneID="JnR-Ex-e4j">
+            <objects>
+                <viewController storyboardIdentifier="SecondViewController" id="csW-lj-iMR" customClass="SecondViewController" customModule="MultithreadingTestApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="b97-Ad-qJK">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YRy-8g-R5n">
+                                <rect key="frame" x="171" y="74" width="72.5" height="45.5"/>
+                                <fontDescription key="fontDescription" name="MarkerFelt-Wide" family="Marker Felt" pointSize="35"/>
+                                <color key="textColor" systemColor="systemIndigoColor" red="0.34509803919999998" green="0.33725490200000002" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" prefetchingEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KBg-6k-btM">
+                                <rect key="frame" x="0.0" y="134.5" width="414" height="727.5"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="wlM-9l-ULH">
+                                    <size key="itemSize" width="100" height="100"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                                <connections>
+                                    <outlet property="dataSource" destination="csW-lj-iMR" id="blP-o2-vJ4"/>
+                                    <outlet property="delegate" destination="csW-lj-iMR" id="vbk-tB-84a"/>
+                                </connections>
+                            </collectionView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="AB4-xl-SBN">
+                                <rect key="frame" x="197" y="438" width="20" height="20"/>
+                            </activityIndicatorView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemGroupedBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="AB4-xl-SBN" firstAttribute="centerX" secondItem="b97-Ad-qJK" secondAttribute="centerX" id="0d4-Hw-Rpf"/>
+                            <constraint firstItem="YRy-8g-R5n" firstAttribute="top" secondItem="f2q-Ih-vYd" secondAttribute="top" constant="30" id="1ia-Iz-fFj"/>
+                            <constraint firstItem="AB4-xl-SBN" firstAttribute="centerY" secondItem="b97-Ad-qJK" secondAttribute="centerY" id="6Jy-In-Dd8"/>
+                            <constraint firstItem="KBg-6k-btM" firstAttribute="leading" secondItem="f2q-Ih-vYd" secondAttribute="leading" id="AOq-QZ-AdW"/>
+                            <constraint firstItem="f2q-Ih-vYd" firstAttribute="bottom" secondItem="KBg-6k-btM" secondAttribute="bottom" id="AZW-3Q-CLU"/>
+                            <constraint firstItem="f2q-Ih-vYd" firstAttribute="trailing" secondItem="KBg-6k-btM" secondAttribute="trailing" id="V8W-EH-w5q"/>
+                            <constraint firstItem="KBg-6k-btM" firstAttribute="top" secondItem="YRy-8g-R5n" secondAttribute="bottom" constant="15" id="W1d-mE-fyM"/>
+                            <constraint firstItem="YRy-8g-R5n" firstAttribute="centerX" secondItem="b97-Ad-qJK" secondAttribute="centerX" id="mRU-of-Hw1"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="f2q-Ih-vYd"/>
+                    </view>
+                    <connections>
+                        <outlet property="activityIndicatorView" destination="AB4-xl-SBN" id="yCu-G1-df1"/>
+                        <outlet property="collectionView" destination="KBg-6k-btM" id="FRC-0q-3yB"/>
+                        <outlet property="downloadTypeLabel" destination="YRy-8g-R5n" id="Bay-S8-70y"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tri-zO-JYb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1800.0000000000002" y="137.94642857142856"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="3qv-U8-Kej">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="8cp-bE-Rp6" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="l4G-4P-NNf">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="7qL-40-XxM"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="c5G-nF-uMA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="137.68115942028987" y="137.94642857142856"/>
+        </scene>
+    </scenes>
+</document>
