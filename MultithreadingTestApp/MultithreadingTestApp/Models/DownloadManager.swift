@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class DownloadManager {
+final class DownloadManager {
     static var instance = DownloadManager()
     
     func downloadImage(from url: URL, onComplete: @escaping (UIImage?, Error?) -> Void) {
@@ -19,12 +19,8 @@ class DownloadManager {
                 print(error!)
                 return
             }
-            DispatchQueue.global(qos: .background).async {
-                let image = UIImage(data: data)
-                DispatchQueue.main.async {
-                    onComplete(image, nil)
-                }
-            }
+            let image = UIImage(data: data)
+            onComplete(image, nil)
         }.resume()
     }
 }

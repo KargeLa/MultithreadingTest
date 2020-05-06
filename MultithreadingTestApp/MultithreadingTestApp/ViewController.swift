@@ -8,33 +8,46 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+final class ViewController: UIViewController {
     
-    //MARK: - Actions
-    @IBAction func downloadTypeSegmentedControl(_ sender: UISegmentedControl) {
-        if sender.selectedSegmentIndex == 0 {
+    //MARK: - Properties
+    var downloadType = "Async"
+    
+    //MARK: - Outlets
+    @IBOutlet private weak var downloadButton: UIButton!
+    
+    
+    //MARK: - Actions""
+    @IBAction func downloadButtonClicked(_ sender: UIButton) {
+        if downloadType == "Async" {
             let storyBoard = UIStoryboard(name: "Main", bundle: nil)
             let secondVC = storyBoard.instantiateViewController(identifier: "SecondViewController") as! SecondViewController
             secondVC.type = .async
-            DispatchQueue.main.async {
-                secondVC.downloadTypeLabel.text = "Async"
-            }
+            secondVC.downloadType = "Async"
             navigationController?.pushViewController(secondVC, animated: true)
         }
-        else if sender.selectedSegmentIndex == 1 {
+        else if downloadType == "OneByOne" {
             let storyBoard = UIStoryboard(name: "Main", bundle: nil)
             let secondVC = storyBoard.instantiateViewController(identifier: "SecondViewController") as! SecondViewController
             secondVC.type = .oneByOne
-            DispatchQueue.main.async {
-                secondVC.downloadTypeLabel.text = "One by one"
-            }
+            secondVC.downloadType = "One by one"
             navigationController?.pushViewController(secondVC, animated: true)
+        }
+    }
+    
+    @IBAction func downloadTypeSegmentedControl(_ sender: UISegmentedControl) {
+        if sender.selectedSegmentIndex == 0 {
+            downloadType = "Async"
+        }
+        else if sender.selectedSegmentIndex == 1 {
+            downloadType = "OneByOne"
         }
     }
     
     //MARK: LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
     }
 }
 
