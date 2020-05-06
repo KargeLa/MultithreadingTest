@@ -8,7 +8,7 @@
 
 import UIKit
 
-class UploadedImageCollectionViewCell: UICollectionViewCell {
+final class UploadedImageCollectionViewCell: UICollectionViewCell {
     
     //MARK: - Outlets
     @IBOutlet weak var downloadedImageView: UIImageView!

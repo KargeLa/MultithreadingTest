@@ -11,7 +11,7 @@ import UIKit
 
 public extension UIView {
     /// SwifterSwift: Border color of view; also inspectable from Storyboard.
-    @IBInspectable public var borderColor: UIColor? {
+    @IBInspectable var borderColor: UIColor? {
         get {
             guard let color = layer.borderColor else { return nil }
             return UIColor(cgColor: color)
@@ -28,7 +28,7 @@ public extension UIView {
     }
 
     /// SwifterSwift: Border width of view; also inspectable from Storyboard.
-    @IBInspectable public var borderWidth: CGFloat {
+    @IBInspectable var borderWidth: CGFloat {
         get {
             return layer.borderWidth
         }
@@ -38,7 +38,7 @@ public extension UIView {
     }
 
     /// SwifterSwift: Corner radius of view; also inspectable from Storyboard.
-    @IBInspectable public var ornerRadius: CGFloat {
+    @IBInspectable var cornerRadius: CGFloat {
         get {
             return layer.cornerRadius
         }
