@@ -24,12 +24,12 @@ final class SecondViewController: UIViewController {
     var downloadType: String?
     var downloadedImages: [UIImage] = []
     var urlsForDownloadImage = [
-        "http://img.bezkassira.b/img/organise/1233/large/8708_30d32-1582878914.jpg",
+        "http://img.bezkassira.by/img/organise/1233/large/8708_30d32-1582878914.jpg",
         "http://img.bezkassira.by/img/organise/1591/large/8193_eae1a-1579019500.jpg",
-        "http://img.bezkassira.b/img/organise/2304/large/8505_9091c-1584379941.jpg",
-        "http://img.bezkassira.by/img/organise/1233/large/8613_bb3fb-1582128043.png",
-        "http://img.bezkassira.b/img/organise/1160/large/8006_53d5f-1576902225.jpg",
-        "http://img.bezkassira.b/img/organise/1591/large/8783_54e62-1583487193.jpg",
+        "http://img.bezkassira.by/img/organise/2304/large/8505_9091c-1584379941.jpg",
+        "http://img.bezkassira.by/img/organise/1233/large/8613_bb3fb-15821werwerwer28043.png",
+        "http://img.bezkassira.by/img/organise/1160/large/8006_53d5f-1576902225.jpg",
+        "http://img.bezkassira.by/img/organise/1591/large/8783_54e62-1583487193.jpg",
         "http://img.bezkassira.by/img/organise/1902/large/8937_f0d25-1585829812.png",
         "http://img.bezkassira.by/img/organise/2098/large/9070_104da-1588231856.jpg",
         "http://img.bezkassira.by/img/organise/1433/large/9013_a4915-1586873451.jpg",
@@ -55,6 +55,7 @@ final class SecondViewController: UIViewController {
         
         collectionView.dataSource = self
         collectionView.delegate = self
+        collectionView.reloadData()
         
         collectionView.register(UINib(nibName: "UploadedImageCollectionViewCell", bundle: .main), forCellWithReuseIdentifier: "UploadedImageCollectionViewCell")
     }
@@ -80,27 +81,55 @@ final class SecondViewController: UIViewController {
         var successCounter = 0
         var errorCounter = 0
         activityIndicatorView.startAnimating()
+        let dispatchGroup = DispatchGroup()
+        let dispatchSemaphore = DispatchSemaphore(value: 1)
         for urlString in urlsForDownloadImage {
+            //            dispatchGroup.enter()
+            //            dispatchSemaphore.wait()
             guard let url = URL(string: urlString) else { return }
             DownloadManager.instance.downloadImage(from: url) { [weak self] (image, error) in
-                if error != nil {
-                    errorCounter += 1
-                    index += 1
+                ////                if error != nil {
+                DispatchQueue.global().sync {
+                    if error != nil {                            print("error wait")
+                        errorCounter += 1
+                        index += 1
+                        dispatchSemaphore.wait()
+                        print("error wait finished")
+                        dispatchSemaphore.signal()
+                        print("error done")
+                    }
                 }
-                if let image = image {
-                    self?.downloadedImages.append(image)
-                    successCounter += 1
-                    index += 1
-                    DispatchQueue.main.async {
-                        self?.collectionView.reloadData()
-                        self?.activityIndicatorView.stopAnimating()
-                        if index == self?.urlsForDownloadImage.count {                            self?.showAllert(errorCounter: errorCounter, successCounter: successCounter)
+                //                }
+                //                if let image = image {
+                DispatchQueue.global().sync {
+                    if let image = image {
+                        print("load image image wait")
+                        dispatchSemaphore.wait()
+                        self?.downloadedImages.append(image)
+                        successCounter += 1
+                        index += 1
+                        print("load image image wait finished")
+                        dispatchSemaphore.signal()
+                        print("load image image done")
+                        DispatchQueue.main.sync {
+                            self?.collectionView.reloadData()
                         }
+                    }
+                }
+                //                }
+                DispatchQueue.main.sync {
+                    self?.collectionView.reloadData()
+                    self?.activityIndicatorView.stopAnimating()
+                    if index == self?.urlsForDownloadImage.count {
+                        self?.showAllert(errorCounter: errorCounter, successCounter: successCounter)
                     }
                 }
                 print("index - \(index)")
                 print("errorCounter - \(errorCounter), successCounter - \(successCounter)")
+                
             }
+            //            dispatchGroup.leave()
+            //            dispatchSemaphore.signal()
         }
     }
     
